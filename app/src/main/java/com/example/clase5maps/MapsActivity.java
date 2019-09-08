@@ -54,8 +54,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker miUbicacion;
     private TextView site;
     private List<Marker> markers;
-    private static double minDistance;
-    private static String minNombre;
     private Polyline rastro;
 
 
@@ -77,8 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         site = findViewById(R.id.siteTxt);
         site.setTextColor(Color.RED);
-        minDistance = Double.MAX_VALUE;
-        String minNombre = "";
 
 
 
@@ -136,8 +132,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void actualizarTextDistancias() {
-        double min = minDistance;
-        String nom = minNombre;
+        double min = Double.MAX_VALUE;
+        String nom = "";
         for (Marker mark : markers) {
             double distance = euclidianDistance(mark.getPosition().latitude,
                     miUbicacion.getPosition().latitude,
@@ -149,8 +145,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         }
-        minDistance = min;
-        minNombre = nom;
         if (min == Double.MAX_VALUE) {
             site.setText("");
         } else if (min <= 40) {
