@@ -121,7 +121,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Solicitud de Ubicacion
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
 
         mMap.setOnMapLongClickListener(this);
